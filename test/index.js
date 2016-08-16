@@ -22,6 +22,7 @@ describe('Node Hubspot', function () {
 		});
 
 	});
+
 	describe('pipelines', function () {
 
 		it('should return some pipelines', function (done) {
@@ -33,6 +34,19 @@ describe('Node Hubspot', function () {
 			})
 		});
 
+	});
+
+
+	describe('Lists', function () {
+		it('Returns recently modified or created contacts', function (done) {
+			client.lists.getRecentContacts('recently_updated', {}, function (err, response) {
+				if (err) { return done(err); }
+				expect(response).to.be.defined;
+				expect(response.contacts).to.be.defined;
+				expect(Array.isArray(response.contacts)).to.be.true;
+				done();
+			});
+		});
 	});
 
 
